@@ -65,38 +65,39 @@ const users = [
 // Do not use chat gpt, you are allowed to google.
 
 // Questions
-//1. I want a new array that returns the current content of the array but adds a total property to each user, all i need in the total property is the total amount of products for that user. Please note that total amount should also account for quantity. 
-//2. I want a new array that returns only users whose total is over 3500
-//3. I want a new array that returns this same array but with a full name property that adds the first name and the last name;
-//4. I want a new array that returns only products who have quantity more  than 2 
+//1. I want a new array that returns the current content of the array but adds a total property to each user, all i need in the total property is the total amount of products for that user. Please note that total amount should also account for quantity.
 
-//1. Answer
 const addTotalProperty = () => {
-  return users.map(user => {
+  return users.map((user) => {
     let total = 0;
-    user.productsInCart.forEach(product => {
-      total += parseFloat(product.price) * product.quantity;
+    user.productsInCart.forEach((product) => {
+      total += +product.price * product.quantity;
     });
     return { ...user, total };
   });
 };
 
-//2. Answer
+//2. I want a new array that returns only users whose total is over 3500
+
 const filterUsersByTotal = () => {
-  return addTotalProperty().filter(user => user.total > 3500);
+  return addTotalProperty().filter((user) => user.total > 3500);
 };
 
-//3. Answer
+//3. I want a new array that returns this same array but with a full name property that adds the first name and the last name;
+
 const addFullNameProperty = () => {
-  return users.map(user => {
+  return users.map((user) => {
     return { ...user, fullName: `${user.firstName} ${user.lastName}` };
   });
 };
 
-//4. Answer
+//4. I want a new array that returns only products who have quantity more  than 2
+
 const filterProductsByQuantity = () => {
-  return users.map(user => {
-    const filteredProducts = user.productsInCart.filter(product => product.quantity > 2);
+  return users.map((user) => {
+    const filteredProducts = user.productsInCart.filter(
+      (product) => product.quantity > 2
+    );
     return { ...user, productsInCart: filteredProducts };
   });
 };
