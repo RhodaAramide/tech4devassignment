@@ -69,3 +69,40 @@ const users = [
 //2. I want a new array that returns only users whose total is over 3500
 //3. I want a new array that returns this same array but with a full name property that adds the first name and the last name;
 //4. I want a new array that returns only products who have quantity more  than 2 
+
+//1. Answer
+const addTotalProperty = () => {
+  return users.map(user => {
+    let total = 0;
+    user.productsInCart.forEach(product => {
+      total += parseFloat(product.price) * product.quantity;
+    });
+    return { ...user, total };
+  });
+};
+
+//2. Answer
+const filterUsersByTotal = () => {
+  return addTotalProperty().filter(user => user.total > 3500);
+};
+
+//3. Answer
+const addFullNameProperty = () => {
+  return users.map(user => {
+    return { ...user, fullName: `${user.firstName} ${user.lastName}` };
+  });
+};
+
+//4. Answer
+const filterProductsByQuantity = () => {
+  return users.map(user => {
+    const filteredProducts = user.productsInCart.filter(product => product.quantity > 2);
+    return { ...user, productsInCart: filteredProducts };
+  });
+};
+
+// Test
+console.log(addTotalProperty());
+console.log(filterUsersByTotal());
+console.log(addFullNameProperty());
+console.log(filterProductsByQuantity());
